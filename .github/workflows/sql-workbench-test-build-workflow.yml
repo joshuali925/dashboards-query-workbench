@@ -11,7 +11,7 @@ on:
 
 env:
   PLUGIN_NAME: dashboards-query-workbench
-  OPENSEARCH_VERSION: '1.3'
+  OPENSEARCH_DASHBOARDS_VERSION: '1.3'
   OPENSEARCH_PLUGIN_VERSION: 1.3.8.0
 
 jobs:
@@ -32,11 +32,15 @@ jobs:
           repository: opensearch-project/OpenSearch-Dashboards
           ref: ${{ env.OPENSEARCH_DASHBOARDS_VERSION }}
           path: OpenSearch-Dashboards
+
       - name: Get node and yarn versions
         id: versions_step
         run: |
           echo "::set-output name=node_version::$(node -p "(require('./OpenSearch-Dashboards/package.json').engines.node).match(/[.0-9]+/)[0]")"
           echo "::set-output name=yarn_version::$(node -p "(require('./OpenSearch-Dashboards/package.json').engines.yarn).match(/[.0-9]+/)[0]")"
+
+      - run: node -p "(require('./OpenSearch-Dashboards/package.json').engines.node).match(/[.0-9]+/)[0]"
+
       - name: Setup node
         uses: actions/setup-node@v1
         with:
