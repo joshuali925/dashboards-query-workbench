@@ -3,10 +3,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-
 import { AppMountParameters, CoreSetup, CoreStart, Plugin } from '../../../src/core/public';
-import { WorkbenchPluginSetup, WorkbenchPluginStart, AppPluginStartDependencies } from './types';
 import { PLUGIN_NAME } from '../common';
+import { AppPluginStartDependencies, WorkbenchPluginSetup, WorkbenchPluginStart } from './types';
 
 export class WorkbenchPlugin implements Plugin<WorkbenchPluginSetup, WorkbenchPluginStart> {
   public setup(core: CoreSetup): WorkbenchPluginSetup {
@@ -34,7 +33,10 @@ export class WorkbenchPlugin implements Plugin<WorkbenchPluginSetup, WorkbenchPl
     return {};
   }
 
-  public start(core: CoreStart): WorkbenchPluginStart {
+  public start(core: CoreStart, startDeps: AppPluginStartDependencies): WorkbenchPluginStart {
+    startDeps.observabilityDashboards.overrideRequestHandler(async (input: string) => {
+      return `hello from workbench. received input ${input}`;
+    });
     return {};
   }
 

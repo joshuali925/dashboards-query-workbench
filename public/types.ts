@@ -3,7 +3,6 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-
 import { NavigationPublicPluginStart } from '../../../src/plugins/navigation/public';
 
 export interface WorkbenchPluginSetup {}
@@ -13,4 +12,7 @@ export interface WorkbenchPluginStart {}
 
 export interface AppPluginStartDependencies {
   navigation: NavigationPublicPluginStart;
+  observabilityDashboards: {
+    overrideRequestHandler: (handleLLMRequest: (input: string) => Promise<string>) => void;
+  };
 }
