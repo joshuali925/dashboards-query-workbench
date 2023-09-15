@@ -106,7 +106,7 @@ export class PPLPage extends React.Component<PPLPageProps, PPLPageState> {
         <EuiText className="sql-query-panel-header"><h3>Query editor</h3></EuiText>
         <EuiSpacer size="s" />
         <EuiCodeEditor
-          theme="sql_console"
+          theme="textmate"
           width="100%"
           height="5rem"
           value={this.props.pplQuery}

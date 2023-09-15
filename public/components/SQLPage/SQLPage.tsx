@@ -110,7 +110,7 @@ export class SQLPage extends React.Component<SQLPageProps, SQLPageState> {
         <EuiSpacer size="s" />
         <EuiCodeEditor
           mode="sql"
-          theme="sql_console"
+          theme="textmate"
           width="100%"
           height="7rem"
           value={this.props.sqlQuery}
